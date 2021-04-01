@@ -9,6 +9,22 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 
 function generateHTML(templateArray) {
+  const employeeCards = [];
+  templateArray.forEach(worker => {
+    employeeCards.push(`
+<div class="card">
+    <div class="card-header">
+        ${worker.getName()}
+        ${worker.getRole()}
+    </div>
+    <div class="card-body">
+        <span>Employee ID: ${worker.getId()}<span>
+        <span>Employee Email: ${worker.getEmail()}</span>
+    </div>
+</div>
+    `);
+  });
+  //   const employeeCardContainer = ``;
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -24,19 +40,18 @@ function generateHTML(templateArray) {
         <h1>Employee Directory</h1>
     </header>
     <section>
-        <div>
-            <h3>${templateArray[0].getName()}</h3>
-        </div>
+        ${employeeCards[0]}
     </section>
 </body>
 </html>
     `;
-
+  // Write the template into html file
   fs.writeFile("./dist/index.html", html, err => {
     err ? console.log(err) : console.log("Successfully written to index.html");
   });
 }
 
+// Async's asks the user the info of the other employees
 async function addTheRest(templateArray, count) {
   // based on how many exployees the user wants to add it will cycle through
   for (let i = 0; i < count; i++) {
@@ -122,7 +137,7 @@ async function addTheRest(templateArray, count) {
       );
     }
   }
-  console.log(templateArray);
+  // send all the employee array to generateHtml fucntion
   generateHTML(templateArray);
 }
 
