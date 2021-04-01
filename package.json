@@ -1,0 +1,26 @@
+{
+  "name": "my-team-page-generator",
+  "version": "1.0.0",
+  "description": "Homework 10 of the OSU coding bootcamp",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kekons4/my-team-page-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kekons4/my-team-page-generator/issues"
+  },
+  "homepage": "https://github.com/kekons4/my-team-page-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
