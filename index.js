@@ -37,113 +37,108 @@ function generateHTML(templateArray) {
   });
 }
 
+async function addTheRest(templateArray, count) {
+  // based on how many exployees the user wants to add it will cycle through
+  for (let i = 0; i < count; i++) {
+    // Asks user for Engineer or Intern
+    const test = await inquirer.prompt([
+      {
+        type: "list",
+        choices: [
+          "Engineer",
+          new inquirer.Separator(),
+          "Intern",
+          new inquirer.Separator(),
+          "None",
+          new inquirer.Separator()
+        ],
+        message: "Would you like to add an Engineer or an Intern?",
+        name: "choice"
+      }
+    ]);
+    // If choice equals Engineer
+    if (test.choice === "Engineer") {
+      const engineerRes = await inquirer.prompt([
+        {
+          type: "input",
+          message: "Engineers Name: ",
+          name: "engineerName"
+        },
+        {
+          type: "input",
+          message: "Engineer Employee ID: ",
+          name: "engineerID"
+        },
+        {
+          type: "input",
+          message: "Engineer email: ",
+          name: "engineerEmail"
+        },
+        {
+          type: "input",
+          message: "Engineer Github username: ",
+          name: "engineerGithub"
+        }
+      ]);
+
+      templateArray.push(
+        new Engineer(
+          engineerRes.engineerName,
+          engineerRes.engineerID,
+          engineerRes.engineerEmail,
+          engineerRes.engineerGithub
+        )
+      );
+    } else if (test.choice === "Intern") {
+      const internRes = await inquirer.prompt([
+        {
+          type: "input",
+          message: "Interns Name: ",
+          name: "internName"
+        },
+        {
+          type: "input",
+          message: "Interns Employee ID: ",
+          name: "internID"
+        },
+        {
+          type: "input",
+          message: "Interns email: ",
+          name: "internEmail"
+        },
+        {
+          type: "input",
+          message: "Interns School",
+          name: "internSchool"
+        }
+      ]);
+      templateArray.push(
+        new Intern(
+          internRes.internName,
+          internRes.internID,
+          internRes.internEmail,
+          internRes.internSchool
+        )
+      );
+    }
+  }
+  console.log(templateArray);
+  generateHTML(templateArray);
+}
+
 // This function will gather the rest of the employees and store them in the
 // templateArray to be used later to contruct the html
-function addWorkers(templateArray) {
+async function addWorkers(templateArray) {
   //asks the user how many employees to add
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        message: "How many Employees do you want to add?",
-        name: "count"
-      }
-    ])
-    .then(response => {
-      // based on how many exployees the user wants to add it will cycle through
-      for (let i = 0; i < response.count; i++) {
-        // Asks user for Engineer or Intern
-        inquirer
-          .prompt([
-            {
-              type: "list",
-              choices: [
-                "Engineer",
-                new inquirer.Separator(),
-                "Intern",
-                new inquirer.Separator(),
-                "None",
-                new inquirer.Separator()
-              ],
-              message: "Would you like to add an Engineer or an Intern?",
-              name: "choice"
-            }
-          ])
-          .then(response => {
-            // If choice equals Engineer
-            if (response.choice === "Engineer") {
-              inquirer
-                .prompt([
-                  {
-                    type: "input",
-                    message: "Engineers Name: ",
-                    name: "engineerName"
-                  },
-                  {
-                    type: "input",
-                    message: "Engineer Employee ID: ",
-                    name: "engineerID"
-                  },
-                  {
-                    type: "input",
-                    message: "Engineer email: ",
-                    name: "engineerEmail"
-                  },
-                  {
-                    type: "input",
-                    message: "Engineer Github username: ",
-                    name: "engineerGithub"
-                  }
-                ])
-                .then(response => {
-                  templateArray.push(
-                    new Engineer(
-                      response.engineerName,
-                      response.engineerID,
-                      response.engineerEmail,
-                      response.engineerGithub
-                    )
-                  );
-                });
-            } else if (response.choice === "Intern") {
-              inquirer
-                .prompt([
-                  {
-                    type: "input",
-                    message: "Interns Name: ",
-                    name: "internName"
-                  },
-                  {
-                    type: "input",
-                    message: "Interns Employee ID: ",
-                    name: "internID"
-                  },
-                  {
-                    type: "input",
-                    message: "Interns email: ",
-                    name: "internEmail"
-                  },
-                  {
-                    type: "input",
-                    message: "Interns School",
-                    name: "internSchool"
-                  }
-                ])
-                .then(response => {
-                  templateArray.push(
-                    new Intern(
-                      response.internName,
-                      response.internID,
-                      response.internEmail,
-                      response.internSchool
-                    )
-                  );
-                });
-            }
-          });
-      }
-      generateHTML(templateArray);
-    });
+  const count = await inquirer.prompt([
+    {
+      type: "input",
+      message: "How many Employees do you want to add?",
+      name: "count"
+    }
+  ]);
+
+  addTheRest(templateArray, count.count);
 }
 
 // Get Manager information
