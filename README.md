@@ -14,3 +14,5 @@ the user a series of questions about who is on the team and their employee infor
 
 ![Screenshot_two](/assets/images/screenshot_two.png)
 ##### Screen shot of generated HTML displaying employee information
+
+## Installation
