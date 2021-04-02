@@ -21,7 +21,7 @@ Link to Recording of working project: https://drive.google.com/file/d/1cvEmL2834
 
 You can install this project via https://github.com/kekons4/my-team-page-generator.git
 Technology used: node.js
-libraries used: inquirer
+libraries used: inquirer and Jest
 
 ## Usage
 
