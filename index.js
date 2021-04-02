@@ -19,9 +19,9 @@ function generateHTML(templateArray) {
             <span>${worker.getRole()}</span>
         </div>
         <div class="card-body">
-            <span>Employee ID: ${worker.getId()}</span>
-            <span>Employee Email: ${worker.getEmail()}</span>
-            <span>Office Number: ${worker.officeNumber}</span>
+            <span><strong>ID:</strong> ${worker.getId()}</span>
+            <span><strong>Email:</strong> <a target="_blank" href="mailto:${worker.getEmail()}">${worker.getEmail()}</a></span>
+            <span><strong>Office Number:</strong> ${worker.officeNumber}</span>
         </div>
       </div>`);
     // If engineer
@@ -32,9 +32,9 @@ function generateHTML(templateArray) {
             <span>${worker.getRole()}</span>
         </div>
         <div class="card-body">
-            <span>Employee ID: ${worker.getId()}</span>
-            <span>Employee Email: ${worker.getEmail()}</span>
-            <span>Github Username: ${worker.getGithub()}</span>
+            <span><strong>ID:</strong> ${worker.getId()}</span>
+            <span><strong>Email:</strong> <a target="_blank" href="mailto:${worker.getEmail()}">${worker.getEmail()}</a></span>
+            <span><strong>Github:</strong> <a target="_blank" href="https://github.com/${worker.getGithub()}">${worker.getGithub()}</a></span>
         </div>
       </div>`);
     // if Intern
@@ -45,9 +45,9 @@ function generateHTML(templateArray) {
             <span>${worker.getRole()}</span>
         </div>
         <div class="card-body">
-            <span>Employee ID: ${worker.getId()}</span>
-            <span>Employee Email: ${worker.getEmail()}</span>
-            <span>School: ${worker.getSchool()}</span>
+            <span><strong>ID:</strong> ${worker.getId()}</span>
+            <span><strong>Email:</strong> <a target="_blank" href="mailto:${worker.getEmail()}">${worker.getEmail()}</a></span>
+            <span><strong>School:</strong> ${worker.getSchool()}</span>
         </div>
       </div>`);
     }
