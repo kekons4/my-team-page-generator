@@ -7,6 +7,8 @@ In this project the user can create a auto generated html page that will display
 companies entire team. The html page is generated through a node.js program that asks
 the user a series of questions about who is on the team and their employee information.
 
+Link to Recording of working project: https://drive.google.com/file/d/1cvEmL2834OMsJCJEPO-zfXyvpfrwYXqa/view
+
 ## Screenshots
 
 ![Screenshot_one](/assets/images/screenshot_one.PNG)
