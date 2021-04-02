@@ -11,37 +11,71 @@ const inquirer = require("inquirer");
 function generateHTML(templateArray) {
   const employeeCards = [];
   templateArray.forEach(worker => {
-    employeeCards.push(`
-<div class="card">
-    <div class="card-header">
-        ${worker.getName()}
-        ${worker.getRole()}
-    </div>
-    <div class="card-body">
-        <span>Employee ID: ${worker.getId()}<span>
-        <span>Employee Email: ${worker.getEmail()}</span>
-    </div>
-</div>
-    `);
+    // if Manager
+    if(worker.getRole() === "Manager") {
+      employeeCards.push(`<div class="card">
+        <div class="card-header">
+            <h1>${worker.getName()}</h1>
+            <span>${worker.getRole()}</span>
+        </div>
+        <div class="card-body">
+            <span>Employee ID: ${worker.getId()}</span>
+            <span>Employee Email: ${worker.getEmail()}</span>
+            <span>Office Number: ${worker.officeNumber}</span>
+        </div>
+      </div>`);
+    // If engineer
+    } else if( worker.getRole() === "Engineer") {
+      employeeCards.push(`<div class="card">
+        <div class="card-header">
+            <h1>${worker.getName()}</h1>
+            <span>${worker.getRole()}</span>
+        </div>
+        <div class="card-body">
+            <span>Employee ID: ${worker.getId()}</span>
+            <span>Employee Email: ${worker.getEmail()}</span>
+            <span>Github Username: ${worker.getGithub()}</span>
+        </div>
+      </div>`);
+    // if Intern
+    } else {
+      employeeCards.push(`<div class="card">
+        <div class="card-header">
+            <h1>${worker.getName()}</h1>
+            <span>${worker.getRole()}</span>
+        </div>
+        <div class="card-body">
+            <span>Employee ID: ${worker.getId()}</span>
+            <span>Employee Email: ${worker.getEmail()}</span>
+            <span>School: ${worker.getSchool()}</span>
+        </div>
+      </div>`);
+    }
   });
   //   const employeeCardContainer = ``;
-  const html = `
+  let html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./dist/styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+    <title>My Team Page Generator</title>
 </head>
 <body>
     <header>
         <h1>Employee Directory</h1>
     </header>
     <section>
-        ${employeeCards[0]}
-    </section>
+    `;
+
+    employeeCards.forEach(card => {
+      html += card;
+    });
+
+    html += `
+  </section>
 </body>
 </html>
     `;
