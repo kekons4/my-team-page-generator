@@ -9,10 +9,10 @@ the user a series of questions about who is on the team and their employee infor
 
 ## Screenshots
 
-![Screenshot_one](/assets/images/screenshot_one.png)
+![Screenshot_one](/assets/images/screenshot_one.PNG)
 ##### Screen shot of user entering company employee info
 
-![Screenshot_two](/assets/images/screenshot_two.png)
+![Screenshot_two](/assets/images/screenshot_two.PNG)
 ##### Screen shot of generated HTML displaying employee information
 
 ## Installation
